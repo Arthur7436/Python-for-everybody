@@ -8,53 +8,40 @@ class Program
     {
         string folderPath = @"C:\Your\Path\Here"; // Hardcoded path
         string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-        string outputPath = Path.Combine(desktopPath, "output.txt");
+        string outputPath = Path.Combine(desktopPath, "folder_structure.txt");
 
         using (StreamWriter outputFile = new StreamWriter(outputPath))
         {
-            ProcessDirectory(folderPath, outputFile);
+            ProcessDirectory(folderPath, outputFile, 0); // Start with depth 0
         }
     }
 
-    static void ProcessDirectory(string targetDirectory, StreamWriter outputFile)
+    static void ProcessDirectory(string targetDirectory, StreamWriter outputFile, int depth)
     {
+        // Write the current directory with indentation based on depth
+        string indentation = new String(' ', depth * 4); // 4 spaces per level of depth
+        outputFile.WriteLine($"{indentation}Directory: {Path.GetFileName(targetDirectory)}");
+
         // Process the list of files found in the directory.
         string[] fileEntries = Directory.GetFiles(targetDirectory, "*.json");
         foreach (string fileName in fileEntries)
-            ProcessFile(fileName, outputFile);
+            ProcessFile(fileName, outputFile, depth + 1);
 
         // Recurse into subdirectories of this directory.
         string[] subdirectoryEntries = Directory.GetDirectories(targetDirectory);
         foreach (string subdirectory in subdirectoryEntries)
-            ProcessDirectory(subdirectory, outputFile);
+            ProcessDirectory(subdirectory, outputFile, depth + 1); // Increment depth for subdirectories
     }
 
-    static void ProcessFile(string path, StreamWriter outputFile)
+    static void ProcessFile(string path, StreamWriter outputFile, int depth)
     {
+        // Use indentation for files similar to directories
+        string indentation = new String(' ', depth * 4);
         string jsonContent = File.ReadAllText(path);
         var jsonElement = JsonDocument.Parse(jsonContent).RootElement;
-        outputFile.WriteLine(Path.GetFileName(path));
-        outputFile.WriteLine(JsonSerializer.Serialize(jsonElement, new JsonSerializerOptions { WriteIndented = false }));
+        outputFile.WriteLine($"{indentation}File: {Path.GetFileName(path)}");
+        // Optionally write file content or just the name
+        // outputFile.WriteLine($"{indentation}{JsonSerializer.Serialize(jsonElement, new JsonSerializerOptions { WriteIndented = false })}");
+        outputFile.WriteLine("\n"); // Adds a double space (two newlines) after each file entry for separation
     }
-
-
-    static void ProcessFile(string path, StreamWriter outputFile)
-{
-    string jsonContent = File.ReadAllText(path);
-    var jsonElement = JsonDocument.Parse(jsonContent).RootElement;
-    outputFile.WriteLine($"File Path: {path}"); // Now includes the full file path
-    outputFile.WriteLine(JsonSerializer.Serialize(jsonElement, new JsonSerializerOptions { WriteIndented = false }));
-    outputFile.WriteLine("\n"); // Adds a double space (two newlines) after each JSON content
 }
-
-}
-
-static void ProcessFile(string path, StreamWriter outputFile)
-{
-    string jsonContent = File.ReadAllText(path);
-    var jsonElement = JsonDocument.Parse(jsonContent).RootElement;
-    outputFile.WriteLine(Path.GetFileName(path));
-    outputFile.WriteLine(JsonSerializer.Serialize(jsonElement, new JsonSerializerOptions { WriteIndented = false }));
-    outputFile.WriteLine("\n"); // Adds an extra newline for double spacing
-}
-
