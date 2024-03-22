@@ -37,3 +37,13 @@ class Program
         outputFile.WriteLine(JsonSerializer.Serialize(jsonElement, new JsonSerializerOptions { WriteIndented = false }));
     }
 }
+
+static void ProcessFile(string path, StreamWriter outputFile)
+{
+    string jsonContent = File.ReadAllText(path);
+    var jsonElement = JsonDocument.Parse(jsonContent).RootElement;
+    outputFile.WriteLine(Path.GetFileName(path));
+    outputFile.WriteLine(JsonSerializer.Serialize(jsonElement, new JsonSerializerOptions { WriteIndented = false }));
+    outputFile.WriteLine("\n"); // Adds an extra newline for double spacing
+}
+
