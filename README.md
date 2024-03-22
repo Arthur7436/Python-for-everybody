@@ -36,6 +36,17 @@ class Program
         outputFile.WriteLine(Path.GetFileName(path));
         outputFile.WriteLine(JsonSerializer.Serialize(jsonElement, new JsonSerializerOptions { WriteIndented = false }));
     }
+
+
+    static void ProcessFile(string path, StreamWriter outputFile)
+{
+    string jsonContent = File.ReadAllText(path);
+    var jsonElement = JsonDocument.Parse(jsonContent).RootElement;
+    outputFile.WriteLine($"File Path: {path}"); // Now includes the full file path
+    outputFile.WriteLine(JsonSerializer.Serialize(jsonElement, new JsonSerializerOptions { WriteIndented = false }));
+    outputFile.WriteLine("\n"); // Adds a double space (two newlines) after each JSON content
+}
+
 }
 
 static void ProcessFile(string path, StreamWriter outputFile)
