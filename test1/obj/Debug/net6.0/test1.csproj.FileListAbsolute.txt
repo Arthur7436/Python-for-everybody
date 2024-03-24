@@ -1,0 +1,15 @@
+/home/arthur/Desktop/Self_Development/Python-for-everybody/test1/obj/Debug/net6.0/test1.csproj.AssemblyReference.cache
+/home/arthur/Desktop/Self_Development/Python-for-everybody/test1/obj/Debug/net6.0/test1.GeneratedMSBuildEditorConfig.editorconfig
+/home/arthur/Desktop/Self_Development/Python-for-everybody/test1/obj/Debug/net6.0/test1.AssemblyInfoInputs.cache
+/home/arthur/Desktop/Self_Development/Python-for-everybody/test1/obj/Debug/net6.0/test1.AssemblyInfo.cs
+/home/arthur/Desktop/Self_Development/Python-for-everybody/test1/obj/Debug/net6.0/test1.csproj.CoreCompileInputs.cache
+/home/arthur/Desktop/Self_Development/Python-for-everybody/test1/bin/Debug/net6.0/test1
+/home/arthur/Desktop/Self_Development/Python-for-everybody/test1/bin/Debug/net6.0/test1.deps.json
+/home/arthur/Desktop/Self_Development/Python-for-everybody/test1/bin/Debug/net6.0/test1.runtimeconfig.json
+/home/arthur/Desktop/Self_Development/Python-for-everybody/test1/bin/Debug/net6.0/test1.dll
+/home/arthur/Desktop/Self_Development/Python-for-everybody/test1/bin/Debug/net6.0/ref/test1.dll
+/home/arthur/Desktop/Self_Development/Python-for-everybody/test1/bin/Debug/net6.0/test1.pdb
+/home/arthur/Desktop/Self_Development/Python-for-everybody/test1/obj/Debug/net6.0/test1.dll
+/home/arthur/Desktop/Self_Development/Python-for-everybody/test1/obj/Debug/net6.0/ref/test1.dll
+/home/arthur/Desktop/Self_Development/Python-for-everybody/test1/obj/Debug/net6.0/test1.pdb
+/home/arthur/Desktop/Self_Development/Python-for-everybody/test1/obj/Debug/net6.0/test1.genruntimeconfig.cache
