@@ -1,1 +1,1 @@
-My playground repository
+All things python
