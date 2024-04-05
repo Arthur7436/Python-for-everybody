@@ -20,6 +20,7 @@ class Program
             {
                 string chunk = content.Substring(i, Math.Min(1900, content.Length - i)).Replace(" ", ""); // Remove whitespace within chunk
                 string outputLine = $"translate this to plain english{chunk}\n\n"; // Formatting output
+                string outputPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Output.txt");
                 File.AppendAllText(outputPath, outputLine); // Writing to file
             }
         }
