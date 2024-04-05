@@ -1,29 +1,29 @@
 All things python
-
 using System;
 using System.IO;
+using System.Text.RegularExpressions;
 
 class Program
 {
     static void Main(string[] args)
     {
         string folderPath = @"C:\YourFolder"; // Specify your source folder path
-        // Adjust the outputPath to save on the Desktop of the current user
-        string outputPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Output.txt");
+        string outputPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Output.txt"); // Output file path on Desktop
 
         foreach (var file in new DirectoryInfo(folderPath).GetFiles())
         {
             string content = File.ReadAllText(file.FullName); // Reading each file
-            // Assuming content is already in JSON format or convert it here
+            // Remove all forms of whitespace including spaces, tabs, and newlines
+            string processedContent = Regex.Replace(content, @"\s+", "");
 
-            for (int i = 0; i < content.Length; i += 1900)
+            // Split the processedContent into chunks of 1900 characters
+            for (int i = 0; i < processedContent.Length; i += 1900)
             {
-                string chunk = content.Substring(i, Math.Min(1900, content.Length - i)).Replace(" ", ""); // Remove whitespace within chunk
-                string outputLine = $"translate this to plain english{chunk}\n\n"; // Formatting output
-                string outputPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Output.txt");
+                string chunk = processedContent.Substring(i, Math.Min(1900, processedContent.Length - i));
+                // Ensure each chunk is prefixed correctly and add two newlines for separation
+                string outputLine = $"translate this to plain english{chunk}\n\n"; 
                 File.AppendAllText(outputPath, outputLine); // Writing to file
             }
         }
     }
 }
-
