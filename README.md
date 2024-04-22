@@ -1,10 +1,35 @@
 All things python
 
 
-Task 1: Object Oriented Analysis and Design https://career.softserveinc.com/en-us/stories/what-is-object-oriented-programming-oop-explaining-four-major-principles
-Task 2: C# Reference https://learn.microsoft.com/en-us/dotnet/csharp/?WT.mc_id=dotnet-35129-website
-be an expert in following topics
-Task 3: Data Structures 
-Task 4: SOLID principle
-Task 5: Design patterns
-Creational , Behavioural, Structural and Architecturalhttps://refactoring.guru/
+using System;
+using System.IO;
+
+class Program
+{
+    static void Main()
+    {
+        // Specify the path to the source file and the output file.
+        string sourceFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "source.txt");
+        string outputFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "string.txt");
+
+        try
+        {
+            // Read all text from the file.
+            string text = File.ReadAllText(sourceFilePath);
+
+            // Remove spaces from the text.
+            string processedText = text.Replace(" ", "");
+
+            // Write the processed text to a new file.
+            File.WriteAllText(outputFilePath, processedText);
+
+            Console.WriteLine("Processing complete. Check your Desktop for the 'string.txt' file.");
+        }
+        catch (Exception ex)
+        {
+            // Output any errors.
+            Console.WriteLine("An error occurred: " + ex.Message);
+        }
+    }
+}
+
